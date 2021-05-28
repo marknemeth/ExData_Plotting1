@@ -1,17 +1,17 @@
 ####################################################################################################################
 ################################################## Course Project 1: plot1.R #########################################
 ####################################################################################################################
-
+#Note:  Set working directory = source file diretory
 ########################################### Capture dataset for use in Problem #####################################
 
 if(!file.exists("./data")){dir.create("./data")}
 fileUrl<-"https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 download.file(fileUrl,destfile="./data/exdata_data_household_power_consumption.zip",method="curl")
 
-unzip(zipfile="./data/exdata_data_household_power_consumption.zip",
-      files = NULL, list = FALSE, overwrite = TRUE,
-      junkpaths = FALSE, exdir = "./data", unzip = "internal",
-      setTimes = FALSE)
+# unzip(zipfile="./data/exdata_data_household_power_consumption.zip",
+#       files = NULL, list = FALSE, overwrite = TRUE,
+#       junkpaths = FALSE, exdir = "./data", unzip = "internal",
+#       setTimes = FALSE)
 
 
 check_data <- read.table(unz("./data/exdata_data_household_power_consumption.zip", "household_power_consumption.txt"), nrows=10, header=TRUE, quote="\"", sep=";")
@@ -44,5 +44,8 @@ summary(data)
 ########################################### Subsetted to the proper dates ####################################
 
 hist(data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
-png()
+png("./plot1.png", width=480, height=480)
+hist(data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
 
+#png file is created in same directory as source code.  The dimensions can be checked; they are 480x480.
