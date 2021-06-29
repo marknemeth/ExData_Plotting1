@@ -13,7 +13,6 @@ download.file(fileUrl,destfile="./data/exdata_data_household_power_consumption.z
 #       junkpaths = FALSE, exdir = "./data", unzip = "internal",
 #       setTimes = FALSE)
 
-
 check_data <- read.table(unz("./data/exdata_data_household_power_consumption.zip", "household_power_consumption.txt"), nrows=10, header=TRUE, quote="\"", sep=";")
 classes<-sapply(check_data, class)
 
